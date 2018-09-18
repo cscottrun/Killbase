@@ -1,0 +1,22 @@
+<body>
+    <div class = 'container'>
+        <div id='navBar'>
+          <a href='/'>Home</a> <span id='line'>|</span>
+          <a href='/assassins'>Assassins</a> <span id='line'>|</span>
+          <a href='/contracts'>Contracts</a> 
+        </div>
+    </div>
+    <h1>Contracts for Nikita Mears</h1>
+    <ul>
+      <% contracts.forEach( (contract) =>  { %>
+        <li>
+          <a>
+            <%= contract.target_name %> 
+          </a>  
+        </li>
+      <% }); %>
+  
+    </ul>
+  </body>
+  
+  

@@ -1,0 +1,22 @@
+<body>
+  <div class = 'container'>
+      <div id='navBar'>
+        <a href='/'>Home</a> <span id='line'>|</span>
+        <a href='/assassins'>Assassins</a> <span id='line'>|</span>
+        <a href='/contracts'>Contracts</a> 
+      </div>
+  </div>
+  <h1>Assassins sorted by number of kills</h1>
+  <ul>
+    <% assassins.forEach( (assassin) =>  { %>
+      <li>
+        <a>
+          <%= assassin.code_name ? assassin.code_name : assassin.name %>, with <%=assassin.kills%> kills
+        </a>  
+      </li>
+    <% }); %>
+
+  </ul>
+</body>
+
+
