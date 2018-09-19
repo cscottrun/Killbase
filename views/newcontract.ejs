@@ -1,0 +1,44 @@
+<link href="./style.css" rel="stylesheet" >
+
+<div id='navBar'>
+    <a href='/'>Home</a>
+    <a href='/assassins'>Assassins</a>
+    <a href='/contracts'>Contracts</a> 
+    <a href='/newassassin'>Register</a> 
+    <a href='/signup'>Sign up for a job</a>
+    <a href='/newcontract'>Create a new contract</a>   
+  </div>
+
+<form action="newcontractdone" method = "post">
+  <div>
+    <label for="client_name">Your name:</label>
+    <input type="text" id="client_name" name="client_name">
+  </div>
+  <br>
+  <div>
+      <label for="target_name">Target name:</label>
+      <input type="text" id="target_name" name="target_name">
+    </div>
+    <br>
+    <div>
+      <label for="target_location">Target location:</label>
+      <input type="text" id="target_location" name="target_location">
+    </div>
+    <br>
+    <div>
+      <label for="budget">Your budget</label>
+      <input type="integer" id="budget" name="budget">
+    </div>
+    <br>
+    <div>
+      <label for="target_photo">Provide a photo</label>
+      <input type="text" id="target_photo" name="target_photo">
+    </div>
+    <br>
+    <div>
+      <label for="target_security">From 1-10, how protected is this target?</label>
+      <input type="ingeger" id="target_security" name="target_security">
+    </div>
+    <br>
+    <button type = "submit">Submit</button>
+</form>

@@ -1,0 +1,45 @@
+<link href="./style.css" rel="stylesheet" >
+<body>
+    <div class = 'container'>
+        <div id='navBar'>
+            <a href='/'>Home</a>
+            <a href='/assassins'>Assassins</a>
+            <a href='/contracts'>Contracts</a> 
+            <a href='/newassassin'>Register</a> 
+            <a href='/signup'>Sign up for a job</a>
+            <a href='/newcontract'>Create a new contract</a>   
+        </div>
+    </div>
+
+    <h1>Open Contracts</h1>
+
+    <ul class='allcontracts'>
+      <%contracts.forEach((contract) => { %>
+        <ul class=contract-list-items>
+          <li class=contract-item>
+              <h2>
+                <%=contract.target_name%>
+              </h2>
+            <div>
+              <img
+              class = 'photo' 
+              src="<%=contract.target_photo%>" 
+              alt="<%=contract.target_name%>"
+              >
+            </div>
+              <h4>
+                Budget $<%=contract.budget%>
+              </h4>      
+              <h4>
+                <%=contract.target_location%>
+              </h4>
+              <h4>
+              Security level <%=contract.target_security%>
+              </h4>
+           
+          </li>
+        </ul>  
+     <% }) %>
+    </ul>
+  </body>
+                 

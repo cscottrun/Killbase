@@ -1,33 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-    <div class = 'container'>
-        <div id='navBar'>
-          <a href='/'>Home</a> <span id='line'>|</span>
-          <a href='/assassins'>Assassins</a> <span id='line'>|</span>
-          <a href='/contracts'>Contracts</a> <span id='line'>|</span>
-          <a href='/jobs'>Current Jobs</a> <span id='line'>|</span>
-          <a href='/signup'>Sign up for a job</a> <span id='line'>|</span> 
-          <a href='/newcontract'>Create a new contract</a> 
-        </div>
-    </div>
-  <div class='container'>
-    <h1 class='title'>Contracts</h1>
-      <div class= 'sortList'>
-          <a href= '/nikita'>Contracts that can afford to pay Nikita Mears.</a><br>
-          <a href= '/old'>A.</a><br>
-          <a href= '/norman'>Number of assassins that are capable of taking out Norman Stansfield.</a><br>
-          <a href= '/total'>Total amount it would require to hire every available assassin.</a><br>
-      </div>
+<link href="./style.css" rel="stylesheet" >
 
-  </div>
+<header>
+  <a href="/">
+    <img src="https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-154_danger_skull_death-512.png" alt="">
+    <div id= "headerdiv">
+      <h3>Killbase</h3>
+    </div>
+  </a>
+</header>
+
+  <body>
+    <div class = 'container'>
+      
+      <div id='navBar'>
+        <a href='/assassins'><p>Assassins</p></a>
+        <a href='/contracts'><p>Contracts</p></a> 
+        <a href='/editassassin'><p>Register</p></a> 
+        <a href='/signup'><p>Sign up for a job</p></a>
+        <a href='/newcontract'><p>Create a new contract</p></a>   
+      </div>
+      <h1 class='title'>Open Contracts</h1>
+    
+      <ul class='allcontracts'>
+          <%contracts.forEach((contract) => { %>
+            <ul class=contract-list-items>
+              <li class=contract-item>
+                  <h2>
+                    <%=contract.target_name%>
+                  </h2>
+                <div>
+                  <img
+                  class = 'photo' 
+                  src="<%=contract.target_photo%>" 
+                  alt="<%=contract.target_name%>"
+                  >
+                </div>
+                  <h4>
+                    Budget $<%=contract.budget%>
+                  </h4>      
+                  <h4>
+                    <%=contract.target_location%>
+                  </h4>
+                  <h4>
+                  Security level <%=contract.target_security%>
+                  </h4>
+               
+              </li>
+            </ul>  
+         <% }) %>
+        </ul>
 
   
 </body>
-</html>

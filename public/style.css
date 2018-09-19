@@ -1,0 +1,132 @@
+body{
+  background-color:lightgrey;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+header {
+  height: 80px;
+  background-color: #E74C3C;
+}
+#headerdiv {
+  position: absolute;
+  margin-top: 15px;
+  display: inline;
+}
+header img {
+  display: inline;
+  height: 80px;
+  background-color: #E74C3C;
+}
+h3 {
+  display: inline;
+  font-family: fantasy;
+  color: #34495E;
+  font-size: 50px;
+}
+h1, h2, h4, p {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: #34495E;
+}
+h1, h2{
+  display: flex;
+  justify-content: center;
+}
+h4{
+  margin: auto;
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+#navBar {
+  display: flex;
+  justify-content: center;
+}
+#navBar a{
+  margin: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+li{
+  list-style-type: none
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+div .home{
+  position: absolute;
+  margin: auto;
+  top: 150px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 500px;
+  width: 900px;
+}
+.homephoto {
+  float: left;
+  position: relative;
+  margin: 25px;
+  top: 0;
+  bottom: 0;
+  height: 400px;  
+  width: 400px;
+}
+button {
+  color: #e6e6e6;
+  background: #1F618D;
+  border: none;
+  font-size: 10px;
+  border-radius: 3px;
+  width: 50px;
+  text-align: center;
+  display: block;
+  padding: 7px 0;
+  margin: 10px auto;
+  cursor: pointer;
+}
+button:hover:enabled {
+  background: #5499C7;
+  color: #fff;
+  text-decoration: none;
+}
+.edit{
+  display: inline;
+}
+.remove{
+  display: inline;
+  background: #E74C3C;
+}
+form {
+  text-decoration: none;
+  color: #34495E;  
+}
+input, label{
+  display: flex;
+  margin-left: 50px;
+  margin-bottom: 10px;
+}
+
+.allcontracts , .allassassins{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.sortlist {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.photo {
+  width: 200px;
+  height:200px;
+  border-radius: 5%;
+}
+.contract-item, .assassin-item{
+  text-align: center;
+  margin-bottom: 50px;
+}

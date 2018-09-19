@@ -1,41 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-    <div class = 'container'>
-        <div id='navBar'>
-          <a href='/'>Home</a> <span id='line'>|</span>
-          <a href='/assassins'>Assassins</a> <span id='line'>|</span>
-          <a href='/contracts'>Contracts</a> <span id='line'>|</span>
-          <a href='/jobs'>Current Jobs</a> <span id='line'>|</span>
-          <a href='/signup'>Sign up for a job</a> <span id='line'>|</span> 
-          <a href='/newcontract'>Create a new contract</a> 
-        </div>
+  <link href="./style.css" rel="stylesheet" >
+
+<header>
+  <a href="/">
+    <img src="https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-154_danger_skull_death-512.png" alt="">
+    <div id= "headerdiv">
+      <h3>Killbase</h3>
     </div>
-  <div class='container'>
-    <h1 class='title'>Assassins</h1>
-      <div class= 'sortList'>
-          <a href= '/mostkills'>Select all the assassins, sorted by number of kills.</a><br>
-          <a href= '/old'>Select all of the assassins older than 30 years old.</a><br>
-          <a href= '/norman'>Number of assassins that are capable of taking out Norman Stansfield.</a><br>
-          <a href= '/staff'>Total assassins currently on staff.</a><br>
-
-      </div>
-      <br>
-      <br>  
-  </div>
-  <div>
-    <a href= '/editassassin'>
-      <button>Add or Revise an Assassin</button>
-    </a>
+  </a>
+</header>
+  <body>
+    <div class = 'container'>
       
-  </div>
+      <div id='navBar'>
+        <a href='/assassins'><p>Assassins</p></a>
+        <a href='/contracts'><p>Contracts</p></a> 
+        <a href='/editassassin'><p>Register</p></a> 
+        <a href='/signup'><p>Sign up for a job</p></a>
+        <a href='/newcontract'><p>Create a new contract</p></a>   
+      </div>
+      <h1 class='title'>Assassins</h1>
 
-  
-</body>
+          <ul class='allassassins'>
+              <%assassins.forEach((assassin) => { %>
+                <ul class=assassin-list-items>
+                  <li class=assassin-item>
+                      <h2>
+                        <%= assassin.code_name ? assassin.code_name : 'Anonymous' %>
+                      </h2>
+                      <h4>
+                        Rating: <%=assassin.rating%>
+                      </h4>   
+                    <div>
+                      <img
+                      src="<%=assassin.assassin_photo%>" 
+                      alt="some photo"
+                      class="photo"
+                      >
+                    </div>
+                      <h4>
+                        Weaon: $<%=assassin.weapon%>
+                      </h4>      
+                      <h4>
+                        Age: <%=assassin.age%>
+                      </h4>
+                      <h4>
+                      Price $<%=assassin.price%>
+                      </h4>
+                      <h4>
+                          Contact: <%=assassin.contact_info%>
+                        </h4>   
+                      <div class="buttonpair">
+                        <a href="/editassassin">
+                          <button class="edit">Edit</button>
+                          <button class="remove">Remove</button>
+                        </a>
+                      </div>
+                  </li>
+                </ul>
+            <% }) %>
+          </ul>      
+    </div>
+  </div>
+  </body>
 </html>

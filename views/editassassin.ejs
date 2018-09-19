@@ -1,29 +1,59 @@
-<form action="newassassin" method = "post">
-  <div>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name">
+<link href="./style.css" rel="stylesheet" >
+
+<header>
+  <a href="/">
+    <img src="https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-154_danger_skull_death-512.png" alt="">
+    <div id= "headerdiv">
+      <h3>Killbase</h3>
     </div>
-    <br>
-    <div>
-      <label for="code_name">Code Name:</label>
-      <input type="text" id="code_name" name="code_name">
-    </div>
-    <br>
-    <div>
-      <label for="weapon">Weapon:</label>
-      <input type="text" id="weapon" name="weapon">
-    </div>
-    <br>
-    <div>
-      <label for="age">Age:</label>
-      <input type="integer" id="age" name="age">
-    </div>
-    <br>
-    <div>
-      <label for="price">Price:</label>
-      <input type="integer" id="price" name="price">
-    </div>
-    <br>
-    <br>
-    <button type = "submit">Submit</button>
-</form>
+  </a>
+</header>
+
+  <body>
+    <div class = 'container'>
+      
+      <div id='navBar'>
+        <a href='/assassins'><p>Assassins</p></a>
+        <a href='/contracts'><p>Contracts</p></a> 
+        <a href='/editassassin'><p>Register</p></a> 
+        <a href='/signup'><p>Sign up for a job</p></a>
+        <a href='/newcontract'><p>Create a new contract</p></a>   
+      </div>
+      <h1 class='title'>Please provide the following information about yourself</h1>
+
+      <form action="newassassin" method = "post">
+        <div>
+            <label for="name">your name:</label>
+            <input type="text" id="name" name="name">
+          </div>
+          <br>
+          <div>
+            <label for="code_name">your code name:</label>
+            <input type="text" id="code_name" name="code_name">
+          </div>
+          <br>
+          <div>
+            <label for="weapon">your weapon of choice:</label>
+            <input type="text" id="weapon" name="weapon">
+          </div>
+          <br>
+          <div>
+            <label for="age">your age:</label>
+            <input type="integer" id="age" name="age">
+          </div>
+          <br>
+          <div>
+            <label for="price">your price:</label>
+            <input type="integer" id="price" name="price">
+          </div>
+          <br>
+          <div>
+            <label for="assassin_photo">your avatar:</label>
+            <input type="text" id="assassin_photo" name="assassin_photo">
+          </div>
+          <br>
+          <button type = "submit">submit</button>
+      </form>
+
+</div>
+</body>

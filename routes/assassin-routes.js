@@ -8,14 +8,16 @@ router.get('/' , (req,res) =>{
 })
 
 //Show assassins page with search options
-router.get('/assassins', (req,res) =>
-  res.render('assassins')
+router.get('/assassins', (req, res) => 
+  knex('assassins')
+    .orderBy('kills','desc')
+    .then((assassins) => {
+      res.render('assassins', {assassins:assassins});
+  })
 )
 
-//Show contracts page with search options
-router.get('/contracts', (req,res) =>
-  res.render('contracts')
-)
+//////////////////
+/****FORMS*****/
 
 //Edit/Add Assassin
 router.get('/editassassin', (req,res) => 
@@ -30,7 +32,10 @@ router.post('/newassassin' , (req,res,next) => {
       code_name: req.body.code_name,
       weapon: req.body.weapon,
       age: req.body.age,
-      price: req.body.price
+      price: req.body.price,
+      kills: 0,
+      rating: 0,
+      assassin_photo: req.body.assassin_photo
     },'*')
     .then((assassins) => {
       //res.send(assassins)
@@ -38,13 +43,36 @@ router.post('/newassassin' , (req,res,next) => {
     }) 
 })
 
+//Form for new contract
+router.get('/newcontract', (req,res) => {
+  res.render('newcontract')
+});
+
+//Make post for new contract
+router.post('/newcontractdone' , (req,res,next) => {
+  knex('contracts')
+  .insert({
+    "target_name": req.body.target_name,
+    "target_location": req.body.target_location,
+    "target_photo": req.body.target_photo,
+    "target_security": req.body.target_security,
+    "client_name": req.body.client_name,
+    "budget": req.body.budget
+  },'*')
+  .then((contract) => {
+    res.render('newcontractdone');
+  })
+})
+
+//////////////////
+/****ASSASSINS*****/
+
 //Get all assassins sorted by number of kills
 router.get('/mostkills', (req, res) => 
   knex('assassins')
     .orderBy('kills','desc')
     .then((assassins) => {
       res.render('mostkills', {assassins:assassins});
-      knex.destroy();
   })
 )
 
@@ -56,7 +84,6 @@ router.get('/old', (req,res) =>
   .then((assassins) => {
     //res.send(assassins)
     res.render('old', {assassins:assassins});
-    knex.destroy();
   })
 )
 
@@ -66,10 +93,9 @@ knex('assassins')
 .count('assassin_id')
 .where('price','<',35)
 .then((assassin) => {
-  //res.send(assassin)
+  console.log(knex);
   res.render('norman', {assassin:assassin});
-  knex.destroy();
-})
+  })
 )
 
 //Total amount it would require to hire every available assassin.
@@ -78,9 +104,20 @@ router.get('/total', (req,res) =>
   .sum('price')
   .then((sum) => {
     res.render('total',{sum:sum})
-    knex.destroy();
   })
 )
+
+//Number of currently contracted assassins
+router.get('/staff', (req,res) => {
+  knex('assassins')
+  .count('assassin_id')
+  .then((assassins) => {
+    res.render('staff', {assassins:assassins})
+  })
+})
+
+//////////////////
+/****CONTRACTS*****/
 
 //Contracts that can afford to pay Nikita Mears
 router.get('/nikita', (req,res) => {
@@ -94,12 +131,11 @@ router.get('/nikita', (req,res) => {
   })
 })
 
-//Number of currently contracted assassins
-router.get('/staff', (req,res) => {
-  knex('assassins')
-  .count('assassin_id')
-  .then((assassins) => {
-    res.render('staff', {assassins:assassins})
+//Current Contracts
+router.get('/contracts' , (req,res) => {
+  knex('contracts')
+  .then((contracts) => {
+    res.render('contracts',{contracts:contracts})
   })
 })
 
