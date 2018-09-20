@@ -41,8 +41,8 @@ router.post('/edit', (req,res,next) => {
     "contact_info": req.body.contact_info,
     "age": req.body.age,
     "price": req.body.price,
-    "rating": req.body.price,
-    "kills": req.body.price,
+    "rating": req.body.rating,
+    "kills": req.body.kills,
     "assassin_photo": req.body.assassin_photo
   },'*')
   .then((assassins) => {
@@ -172,11 +172,14 @@ router.get('/contracts' , (req,res) => {
 router.get('/profile/:id' , (req,res) => {
   let id = (req.params.id)
   knex('jobs')
-  .join('assassins','assassins.assassin_id','jobs.assassin_id')
-  .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
-  .where('jobs.assassin_id','=', id)
+  .fullOuterJoin('assassins','assassins.assassin_id','jobs.assassin_id')
+  .fullOuterJoin('contracts', 'jobs.contract_id' , 'contracts.contract_id')
+  .where('assassins.assassin_id','=', id)
   .then((assassin) => {
+    console.log(assassin[0].assassin_id,
+      assassin.length)
     res.render('profile',{assassin:assassin})
+    //res.send(assassin)
   })
 })
 

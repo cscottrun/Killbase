@@ -22,26 +22,24 @@
         </div>      
     </div>
 
-    <!-- <h1>Active Contracts</h1>
-    <%assassin.forEach((assassin) => { %>
-      <p><%=assassin.target_name%></p>
-      <% }) %> -->
       
     <div class= 'home'>
         <h1>Active Contracts</h1>
-        <ul class='allcontracts'>
+  <% if (assassin[0].contract_id) { %>      
+        
+          <ul class='allcontracts'>
             <%assassin.forEach((assassin) => { %>
               <ul class=contract-list-items>
                 <li class=contract-item>
                     <h2>
                       <%=assassin.target_name%>
                     </h2>
-                  <div>
+                  <div><a href="/contract/<%=assassin.contract_id%>">
                     <img
                     class = 'photo' 
                     src="<%=assassin.target_photo%>" 
                     alt="<%=assassin.target_name%>"
-                    >
+                    ></a>
                   </div>
                   <h4>
                     Budget $<%=assassin.budget%>
@@ -65,5 +63,11 @@
            <% }) %>
           </ul>
     
+        <% } else { %>
+          <div class='home'>
+              <h1>None</h1>
+          </div>
+        
+          <% } %>
     </div>
               

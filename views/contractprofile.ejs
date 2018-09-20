@@ -14,16 +14,28 @@
           <p>Client: <%=contract[0].client_name%></p>
           <p>Location: <%=contract[0].target_location%></p>
           
-          <p><a href="/" >
+          <p>
+            <a href="/" >
             <button class="edit">Edit</button>
+            <br>
+            </a>
+            <a>
             <button class="remove">Remove</button>
-          </a></p>   
+            </a>
+          </p>
+          <p><a href="">  
+            <button class="register" >Join this contract</button>
+          </a></p>
+            
         </div>      
     </div>
 
       
     <div class= 'home'>
         <h1>Assassins on the Case</h1>
+
+      <% if (contract[0].assassin_id) { %>
+
         <ul class='allcontracts'>
             <%contract.forEach((contract) => { %>
               <ul class=contract-list-items>
@@ -31,12 +43,12 @@
                     <h2>
                       <%=contract.code_name%>
                     </h2>
-                  <div>
+                  <div><a href="/profile/<%=contract.assassin_id%>">
                     <img
                     class = 'photo' 
                     src="<%=contract.assassin_photo%>" 
                     alt="<%=contract.assassin_photo%>"
-                    >
+                    ></a>
                   </div>
                   <h4>
                     Rating: <%=contract.rating%>
@@ -48,14 +60,28 @@
                       <!-- <a href="/" > -->
                         <button class="edit" >Edit</button>
                         <button class="remove" >Remove</button>
-                        <!-- <button class="complete" >Complete</button> -->
                       <!-- </a> -->
                   </div>
                  
                 </li>
               </ul>  
+              <a href="/register">
+                
+                
+              </a>
            <% }) %>
           </ul>
     
+    <% } else { %>
+        <div class='home'>
+          <a href="/register">
+            <div class='bigbutton'>
+              <h1>No assassins yet. Sign up now!</h1>
+
+            </div>
+          </a>
+        </div>
+    <% } %>    
+
     </div>
               

@@ -85,13 +85,17 @@ button {
   text-align: center;
   display: block;
   padding: 7px 0;
-  margin: 10px auto;
+  margin: auto;
   cursor: pointer;
 }
 button:hover:enabled {
   background: #5499C7;
   color: #fff;
   text-decoration: none;
+}
+.register {
+  width: 100px;
+  background: grey;
 }
 
 .edit{
