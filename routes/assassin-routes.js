@@ -19,12 +19,39 @@ router.get('/assassins', (req, res) =>
 //////////////////
 /****FORMS*****/
 
-//Edit/Add Assassin
-router.get('/editassassin', (req,res) => 
-  res.render('editassassin')
-)
+//Edit Assassin Form
+router.get('/editassassin/:id' , (req,res) => {
+  let id = (req.params.id)
+  knex('assassins')
+  .where('assassin_id', '=', id)
+  .then ((assassin) => {
+    res.render('editassassin',{assassin:assassin})
+  })
+})
 
-//Capture form submission for new Assain
+//Patch form for Assassin edit
+router.post('/edit', (req,res,next) => {
+  let id = req.body.assassin_id;
+  knex('assassins')
+  .where ('assassin_id','=', id)
+  .update({
+    "name": req.body.name,
+    "code_name": req.body.code_name,
+    "weapon": req.body.weapon,
+    "contact_info": req.body.contact_info,
+    "age": req.body.age,
+    "price": req.body.price,
+    "rating": req.body.price,
+    "kills": req.body.price,
+    "assassin_photo": req.body.assassin_photo
+  },'*')
+  .then((assassins) => {
+    //res.send(assassins)
+    res.render('edit')
+  })
+})
+
+//Post form submission for new Assain
 router.post('/newassassin' , (req,res,next) => {
   knex('assassins')
     .insert({
@@ -42,6 +69,21 @@ router.post('/newassassin' , (req,res,next) => {
       res.render('newassassin');
     }) 
 })
+
+              // //Get chosen profile
+              // router.get('/profile/:id' , (req,res) => {
+              //   let id = (req.params.id)
+              //   knex('jobs')
+              //   .join('assassins','assassins.assassin_id','jobs.assassin_id')
+              //   .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
+              //   .where('jobs.assassin_id','=', id)
+              //   .then((assassin) => {
+              //     res.render('profile',{assassin:assassin})
+              //   })
+              // })
+
+
+
 
 //Form for new contract
 router.get('/newcontract', (req,res) => {
@@ -93,7 +135,6 @@ knex('assassins')
 .count('assassin_id')
 .where('price','<',35)
 .then((assassin) => {
-  console.log(knex);
   res.render('norman', {assassin:assassin});
   })
 )
@@ -138,6 +179,32 @@ router.get('/contracts' , (req,res) => {
     res.render('contracts',{contracts:contracts})
   })
 })
+
+//////////////////
+/****PROFILE*****/
+
+//Get chosen profile
+router.get('/profile/:id' , (req,res) => {
+  let id = (req.params.id)
+  knex('jobs')
+  .join('assassins','assassins.assassin_id','jobs.assassin_id')
+  .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
+  .where('jobs.assassin_id','=', id)
+  .then((assassin) => {
+    res.render('profile',{assassin:assassin})
+  })
+})
+
+// //test
+// router.get('/test', (req,res) => 
+//   knex('jobs')
+//   .join('assassins','assassins.assassin_id','jobs.assassin_id')
+//   .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
+//   .then((assassins) => {
+//     res.send(assassins)
+//   })
+// )
+
 
 module.exports = router;
 

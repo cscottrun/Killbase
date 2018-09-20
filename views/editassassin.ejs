@@ -1,57 +1,54 @@
-<link href="./style.css" rel="stylesheet" >
+<link href="/style.css" rel="stylesheet" >
+<% include header %>
 
-<header>
-  <a href="/">
-    <img src="https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-154_danger_skull_death-512.png" alt="">
-    <div id= "headerdiv">
-      <h3>Killbase</h3>
-    </div>
-  </a>
-</header>
-
-  <body>
-    <div class = 'container'>
-      
-      <div id='navBar'>
-        <a href='/assassins'><p>Assassins</p></a>
-        <a href='/contracts'><p>Contracts</p></a> 
-        <a href='/editassassin'><p>Register</p></a> 
-        <a href='/signup'><p>Sign up for a job</p></a>
-        <a href='/newcontract'><p>Create a new contract</p></a>   
-      </div>
       <h1 class='title'>Please provide the following information about yourself</h1>
 
-      <form action="newassassin" method = "post">
+      <form action="/edit" method = "post">
+        <div>
+            <!-- <label for="assassin_id">your id:</label> -->
+            <input type="hidden" id="assassin_id" name="assassin_id" value='<%=assassin[0].assassin_id%>' >
+          </div>
+          <br>
         <div>
             <label for="name">your name:</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" value='<%=assassin[0].name%>' >
           </div>
           <br>
           <div>
             <label for="code_name">your code name:</label>
-            <input type="text" id="code_name" name="code_name">
+            <input type="text" id="code_name" name="code_name" value="<%=assassin[0].code_name%>">
           </div>
           <br>
           <div>
             <label for="weapon">your weapon of choice:</label>
-            <input type="text" id="weapon" name="weapon">
+            <input type="text" id="weapon" name="weapon" value="<%=assassin[0].weapon%>">
           </div>
           <br>
           <div>
             <label for="age">your age:</label>
-            <input type="integer" id="age" name="age">
+            <input type="integer" id="age" name="age" value="<%=assassin[0].age%>">
           </div>
           <br>
           <div>
             <label for="price">your price:</label>
-            <input type="integer" id="price" name="price">
+            <input type="integer" id="price" name="price" value="<%=assassin[0].price%>">
           </div>
           <br>
           <div>
             <label for="assassin_photo">your avatar:</label>
-            <input type="text" id="assassin_photo" name="assassin_photo">
+            <input type="text" id="assassin_photo" name="assassin_photo" value="<%=assassin[0].assassin_photo%>">
           </div>
           <br>
+          <div>
+              <label for="kills">number of kills:</label>
+              <input type="integer" id="kills" name="kills" value="<%=assassin[0].kills%>">
+            </div>
+            <br>
+            <div>
+                <label for="rating">your rating:</label>
+                <input type="decimal" id="rating" name="rating" value="<%=assassin[0].rating%>">
+              </div>
+              <br>
           <button type = "submit">submit</button>
       </form>
 

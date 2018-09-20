@@ -56,7 +56,7 @@ li{
   margin: 0 auto;
 }
 div .home{
-  position: absolute;
+  /* position: absolute; */
   margin: auto;
   top: 150px;
   right: 0;
@@ -65,7 +65,7 @@ div .home{
   height: 500px;
   width: 900px;
 }
-.homephoto {
+.homephoto, .profilepic, #info {
   float: left;
   position: relative;
   margin: 25px;
@@ -74,6 +74,7 @@ div .home{
   height: 400px;  
   width: 400px;
 }
+
 button {
   color: #e6e6e6;
   background: #1F618D;
@@ -92,6 +93,7 @@ button:hover:enabled {
   color: #fff;
   text-decoration: none;
 }
+
 .edit{
   display: inline;
 }

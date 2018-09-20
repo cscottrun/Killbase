@@ -1,24 +1,6 @@
 <link href="./style.css" rel="stylesheet" >
+<% include header %>
 
-<header>
-  <a href="/">
-    <img src="https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-154_danger_skull_death-512.png" alt="">
-    <div id= "headerdiv">
-      <h3>Killbase</h3>
-    </div>
-  </a>
-</header>
-
-  <body>
-    <div class = 'container'>
-      
-      <div id='navBar'>
-        <a href='/assassins'><p>Assassins</p></a>
-        <a href='/contracts'><p>Contracts</p></a> 
-        <a href='/editassassin'><p>Register</p></a> 
-        <a href='/signup'><p>Sign up for a job</p></a>
-        <a href='/newcontract'><p>Create a new contract</p></a>   
-      </div>
       <h1 class='title'>Open Contracts</h1>
     
       <ul class='allcontracts'>
@@ -35,15 +17,22 @@
                   alt="<%=contract.target_name%>"
                   >
                 </div>
-                  <h4>
-                    Budget $<%=contract.budget%>
-                  </h4>      
-                  <h4>
-                    <%=contract.target_location%>
-                  </h4>
-                  <h4>
-                  Security level <%=contract.target_security%>
-                  </h4>
+                <h4>
+                  Budget $<%=contract.budget%>
+                </h4>      
+                <h4>
+                  <%=contract.target_location%>
+                </h4>
+                <h4>
+                Security level <%=contract.target_security%>
+                </h4>
+                <div class="tripple">
+                    <a href="/editassassin" >
+                      <button class="edit" >Edit</button>
+                      <button class="remove" >Remove</button>
+                      <!-- <button class="complete" >Complete</button> -->
+                    </a>
+                </div>
                
               </li>
             </ul>  

@@ -1,0 +1,69 @@
+<link href="/style.css" rel="stylesheet">
+
+<% include header %>
+    
+    <h1><%=assassin[0].code_name ? assassin[0].code_name : assassin[0].name %></h1>
+    <div class = "home">
+        <a href= "/assassins">
+          <img class="profilepic" src="<%=assassin[0].assassin_photo%>" alt="<%=assassin[0].assassin_id%>">
+        </a>
+        <div id = 'info'>
+          <h2><%=assassin[0].name%></h2>
+          <p>Age: <%=assassin[0].age%></p>
+          <p>Rating: <%=assassin[0].rating%></p>
+          <p>Price: $<%=assassin[0].price%></p>
+          <p>Weapon: <%=assassin[0].weapon%></p>
+          <p>Number of Kills: <%=assassin[0].name%></p>
+          <p>Contact now at <%=assassin[0].contact_info%></p>
+          <p><a href="/editassassin/<%=assassin[0].assassin_id%>" >
+            <button class="edit" >Edit</button>
+            <button class="remove" >Remove</button>
+          </a></p>   
+        </div>      
+    </div>
+
+    <!-- <h1>Active Contracts</h1>
+    <%assassin.forEach((assassin) => { %>
+      <p><%=assassin.target_name%></p>
+      <% }) %> -->
+      
+    <div class= 'home'>
+        <h1>Active Contracts</h1>
+        <ul class='allcontracts'>
+            <%assassin.forEach((assassin) => { %>
+              <ul class=contract-list-items>
+                <li class=contract-item>
+                    <h2>
+                      <%=assassin.target_name%>
+                    </h2>
+                  <div>
+                    <img
+                    class = 'photo' 
+                    src="<%=assassin.target_photo%>" 
+                    alt="<%=assassin.target_name%>"
+                    >
+                  </div>
+                  <h4>
+                    Budget $<%=assassin.budget%>
+                  </h4>      
+                  <h4>
+                    <%=assassin.target_location%>
+                  </h4>
+                  <h4>
+                  Security level <%=assassin.target_security%>
+                  </h4>
+                  <div class="tripple">
+                      <a href="/editassassin/<%=assassin.assassin_id%>" >
+                        <button class="edit" >Edit</button>
+                        <button class="remove" >Remove</button>
+                        <button class="complete" >Complete</button>
+                      </a>
+                  </div>
+                 
+                </li>
+              </ul>  
+           <% }) %>
+          </ul>
+    
+    </div>
+              

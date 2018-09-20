@@ -1,65 +1,50 @@
   <link href="./style.css" rel="stylesheet" >
 
-<header>
-  <a href="/">
-    <img src="https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-154_danger_skull_death-512.png" alt="">
-    <div id= "headerdiv">
-      <h3>Killbase</h3>
-    </div>
-  </a>
-</header>
-  <body>
-    <div class = 'container'>
-      
-      <div id='navBar'>
-        <a href='/assassins'><p>Assassins</p></a>
-        <a href='/contracts'><p>Contracts</p></a> 
-        <a href='/editassassin'><p>Register</p></a> 
-        <a href='/signup'><p>Sign up for a job</p></a>
-        <a href='/newcontract'><p>Create a new contract</p></a>   
-      </div>
-      <h1 class='title'>Assassins</h1>
+  <% include header %>
 
-          <ul class='allassassins'>
-              <%assassins.forEach((assassin) => { %>
-                <ul class=assassin-list-items>
-                  <li class=assassin-item>
-                      <h2>
-                        <%= assassin.code_name ? assassin.code_name : 'Anonymous' %>
-                      </h2>
-                      <h4>
-                        Rating: <%=assassin.rating%>
-                      </h4>   
-                    <div>
+    <h1 class='title'>Assassins</h1>
+
+        <ul class='allassassins'>
+            <%assassins.forEach((assassin) => { %>
+              <ul class=assassin-list-items>
+                <li class=assassin-item>
+                    <h2>
+                      <%= assassin.code_name ? assassin.code_name : 'Anonymous' %>
+                    </h2>
+                    <h4>
+                      Rating: <%=assassin.rating%>
+                    </h4>   
+                  <div>
+                    <a href="/profile/<%=assassin.assassin_id%>">
                       <img
                       src="<%=assassin.assassin_photo%>" 
                       alt="some photo"
                       class="photo"
                       >
+                    </a>
+                  </div>
+                    <h4>
+                      Weaon: <%=assassin.weapon%>
+                    </h4>      
+                    <h4>
+                      Age: <%=assassin.age%>
+                    </h4>
+                    <h4>
+                    Price $<%=assassin.price%>
+                    </h4>
+                    <h4>
+                        Contact: <%=assassin.contact_info%>
+                      </h4>   
+                    <div class="buttonpair">
+                      <a href="/profile/<%=assassin.assassin_id%>" >
+                      <button>Hire!</button>
+                      </a>
                     </div>
-                      <h4>
-                        Weaon: $<%=assassin.weapon%>
-                      </h4>      
-                      <h4>
-                        Age: <%=assassin.age%>
-                      </h4>
-                      <h4>
-                      Price $<%=assassin.price%>
-                      </h4>
-                      <h4>
-                          Contact: <%=assassin.contact_info%>
-                        </h4>   
-                      <div class="buttonpair">
-                        <a href="/editassassin">
-                          <button class="edit">Edit</button>
-                          <button class="remove">Remove</button>
-                        </a>
-                      </div>
-                  </li>
-                </ul>
-            <% }) %>
-          </ul>      
-    </div>
+                </li>
+              </ul>
+          <% }) %>
+        </ul>      
   </div>
-  </body>
+</div>
+</body>
 </html>
