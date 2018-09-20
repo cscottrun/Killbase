@@ -1,0 +1,61 @@
+<link href="/style.css" rel="stylesheet">
+
+<% include header %>
+    
+    <h1><%=contract[0].target_name %></h1>
+    <div class = "home">
+        <a href= "/contracts">
+          <img class="profilepic" src="<%=contract[0].target_photo%>" alt="<%=contract[0].target_name%>">
+        </a>
+        <div id = 'info'>
+          <h2><%=contract[0].target_name%></h2>
+          <p>Budget: $<%=contract[0].budget%></p>
+          <p>Security level: <%=contract[0].target_security%></p>
+          <p>Client: <%=contract[0].client_name%></p>
+          <p>Location: <%=contract[0].target_location%></p>
+          
+          <p><a href="/" >
+            <button class="edit">Edit</button>
+            <button class="remove">Remove</button>
+          </a></p>   
+        </div>      
+    </div>
+
+      
+    <div class= 'home'>
+        <h1>Assassins on the Case</h1>
+        <ul class='allcontracts'>
+            <%contract.forEach((contract) => { %>
+              <ul class=contract-list-items>
+                <li class=contract-item>
+                    <h2>
+                      <%=contract.code_name%>
+                    </h2>
+                  <div>
+                    <img
+                    class = 'photo' 
+                    src="<%=contract.assassin_photo%>" 
+                    alt="<%=contract.assassin_photo%>"
+                    >
+                  </div>
+                  <h4>
+                    Rating: <%=contract.rating%>
+                  </h4>      
+                  <h4>
+                    Kills: <%=contract.kills%>
+                  </h4>
+                  <div class="tripple">
+                      <!-- <a href="/" > -->
+                        <button class="edit" >Edit</button>
+                        <button class="remove" >Remove</button>
+                        <!-- <button class="complete" >Complete</button> -->
+                      <!-- </a> -->
+                  </div>
+                 
+                </li>
+              </ul>  
+           <% }) %>
+          </ul>
+    
+    </div>
+              

@@ -8,7 +8,7 @@ const path = require ('path');
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({}))
 
-let assassins = require('./routes/assassin-routes.js');
+let assassins = require('./routes/routes.js');
 app.use(assassins);
 
 app.use(express.static('public'))

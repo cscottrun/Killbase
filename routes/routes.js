@@ -70,21 +70,6 @@ router.post('/newassassin' , (req,res,next) => {
     }) 
 })
 
-              // //Get chosen profile
-              // router.get('/profile/:id' , (req,res) => {
-              //   let id = (req.params.id)
-              //   knex('jobs')
-              //   .join('assassins','assassins.assassin_id','jobs.assassin_id')
-              //   .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
-              //   .where('jobs.assassin_id','=', id)
-              //   .then((assassin) => {
-              //     res.render('profile',{assassin:assassin})
-              //   })
-              // })
-
-
-
-
 //Form for new contract
 router.get('/newcontract', (req,res) => {
   res.render('newcontract')
@@ -183,7 +168,7 @@ router.get('/contracts' , (req,res) => {
 //////////////////
 /****PROFILE*****/
 
-//Get chosen profile
+//Get Assassin profile
 router.get('/profile/:id' , (req,res) => {
   let id = (req.params.id)
   knex('jobs')
@@ -195,16 +180,17 @@ router.get('/profile/:id' , (req,res) => {
   })
 })
 
-// //test
-// router.get('/test', (req,res) => 
-//   knex('jobs')
-//   .join('assassins','assassins.assassin_id','jobs.assassin_id')
-//   .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
-//   .then((assassins) => {
-//     res.send(assassins)
-//   })
-// )
-
+//Contract Profile
+router.get('/contract/:id' , (req,res) => {
+  let id = (req.params.id)
+  knex('jobs')
+  .join('assassins','assassins.assassin_id','jobs.assassin_id')
+  .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
+  .where('jobs.contract_id','=', id)
+  .then((contract) => {
+    res.render('contractprofile',{contract:contract})
+  })
+})
 
 module.exports = router;
 
