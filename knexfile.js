@@ -7,32 +7,9 @@ module.exports = {
     connection: 'postgress://localhost/killbase'
   },
 
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
-
   production: {
-    client: 'postgresql',
-    connection: 'postgresql-closed-43741', //process.env.DATABASE_URL + `?ssl=true`
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+    client: 'pg',
+    connection: 'postgres://cgropdhhkrvdjo:3ff9f94412101923ca9f1badc499d6cd305050864312a0cb471584281c3caa3d@ec2-54-225-76-201.compute-1.amazonaws.com:5432/ddai69ro33abll',
   }
 
 };
