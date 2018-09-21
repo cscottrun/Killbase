@@ -2,35 +2,50 @@ let express = require('express');
 let router = express.Router();
 let knex = require('../db/knex');
 
-//home page
+//HOME PAGE
 router.get('/' , (req,res) =>{
   res.render('index')
 })
 
-//Show assassins page with search options
+//////////////////
+/****ASSASSINS*****/
+
+//Show all assassins sorted by rating
 router.get('/assassins', (req, res) => 
-  knex('assassins')
-    .orderBy('kills','desc')
-    .then((assassins) => {
-      res.render('assassins', {assassins:assassins});
-  })
+knex('assassins')
+.orderBy('rating','desc')
+.then((assassins) => {
+  res.render('assassins', {assassins:assassins});
+})
 )
 
-//////////////////
-/****FORMS*****/
+//Get Assassin profile
+router.get('/assassins/:id' , (req,res) => {
+  let id = (req.params.id)
+  knex('jobs')
+  .fullOuterJoin('assassins','assassins.assassin_id','jobs.assassin_id')
+  .fullOuterJoin('contracts', 'jobs.contract_id' , 'contracts.contract_id')
+  .where('assassins.assassin_id','=', id)
+  .then((assassin) => {
+    console.log(assassin[0].assassin_id,
+      assassin.length)
+      res.render('assassins-id',{assassin:assassin})
+      //res.send(assassin)
+    })
+})
 
 //Edit Assassin Form
-router.get('/editassassin/:id' , (req,res) => {
+router.get('/assassins/edit/:id' , (req,res) => {
   let id = (req.params.id)
   knex('assassins')
   .where('assassin_id', '=', id)
   .then ((assassin) => {
-    res.render('editassassin',{assassin:assassin})
+    res.render('assassins-edit',{assassin:assassin})
   })
 })
 
 //Patch form for Assassin edit
-router.post('/edit', (req,res,next) => {
+router.post('/assassins/edit/done', (req,res,next) => {
   let id = req.body.assassin_id;
   knex('assassins')
   .where ('assassin_id','=', id)
@@ -47,36 +62,60 @@ router.post('/edit', (req,res,next) => {
   },'*')
   .then((assassins) => {
     //res.send(assassins)
-    res.render('edit')
+    res.render('assassins-edit-done')
   })
 })
 
 //Post form submission for new Assain
 router.post('/newassassin' , (req,res,next) => {
   knex('assassins')
-    .insert({
-      name: req.body.name,
-      code_name: req.body.code_name,
-      weapon: req.body.weapon,
-      age: req.body.age,
-      price: req.body.price,
-      kills: 0,
-      rating: 0,
-      assassin_photo: req.body.assassin_photo
-    },'*')
-    .then((assassins) => {
-      //res.send(assassins)
-      res.render('newassassin');
-    }) 
+  .insert({
+    name: req.body.name,
+    code_name: req.body.code_name,
+    weapon: req.body.weapon,
+    age: req.body.age,
+    price: req.body.price,
+    kills: 0,
+    rating: 0,
+    assassin_photo: req.body.assassin_photo
+  },'*')
+  .then((assassins) => {
+    //res.send(assassins)
+    res.render('newassassin');
+  }) 
+})
+
+
+//////////////////
+/****CONTRACTS*****/
+
+//All Contractacts
+router.get('/contracts' , (req,res) => {
+knex('contracts')
+.then((contracts) => {
+  res.render('contracts',{contracts:contracts})
+})
+})
+
+//Contract Profile
+router.get('/contracts/:id' , (req,res) => {
+  let id = (req.params.id)
+  knex('jobs')
+  .join('assassins','assassins.assassin_id','jobs.assassin_id')
+  .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
+  .where('jobs.contract_id','=', id)
+  .then((contract) => {
+    res.render('contracts-id',{contract:contract})
+  })
 })
 
 //Form for new contract
-router.get('/newcontract', (req,res) => {
-  res.render('newcontract')
+router.get('/contracts/edit', (req,res) => {
+  res.render('contracts-edit')
 });
 
 //Make post for new contract
-router.post('/newcontractdone' , (req,res,next) => {
+router.post('/contracts/edit/done' , (req,res,next) => {
   knex('contracts')
   .insert({
     "target_name": req.body.target_name,
@@ -87,115 +126,8 @@ router.post('/newcontractdone' , (req,res,next) => {
     "budget": req.body.budget
   },'*')
   .then((contract) => {
-    res.render('newcontractdone');
-  })
-})
-
-//////////////////
-/****ASSASSINS*****/
-
-//Get all assassins sorted by number of kills
-router.get('/mostkills', (req, res) => 
-  knex('assassins')
-    .orderBy('kills','desc')
-    .then((assassins) => {
-      res.render('mostkills', {assassins:assassins});
-  })
-)
-
-//Select all of the assassins older than 30 years old.
-router.get('/old', (req,res) => 
-  knex('assassins')
-  .where('age', '>', 30)
-  .orderBy('age')
-  .then((assassins) => {
-    //res.send(assassins)
-    res.render('old', {assassins:assassins});
-  })
-)
-
-//Number of assassins that are capable of taking out Norman Stansfield.(price <= $35)
-router.get('/norman', (req,res) =>
-knex('assassins')
-.count('assassin_id')
-.where('price','<',35)
-.then((assassin) => {
-  res.render('norman', {assassin:assassin});
-  })
-)
-
-//Total amount it would require to hire every available assassin.
-router.get('/total', (req,res) => 
-  knex('assassins')
-  .sum('price')
-  .then((sum) => {
-    res.render('total',{sum:sum})
-  })
-)
-
-//Number of currently contracted assassins
-router.get('/staff', (req,res) => {
-  knex('assassins')
-  .count('assassin_id')
-  .then((assassins) => {
-    res.render('staff', {assassins:assassins})
-  })
-})
-
-//////////////////
-/****CONTRACTS*****/
-
-//Contracts that can afford to pay Nikita Mears
-router.get('/nikita', (req,res) => {
-  knex('contracts')
-  .select('target_name')
-  .where('budget', '<', knex('assassins')
-  .select('price')
-  .where('name', 'Nikita Mears'))
-  .then((contracts) => {
-    res.render('nikita', {contracts:contracts})
-  })
-})
-
-//Current Contracts
-router.get('/contracts' , (req,res) => {
-  knex('contracts')
-  .then((contracts) => {
-    res.render('contracts',{contracts:contracts})
-  })
-})
-
-//////////////////
-/****PROFILE*****/
-
-//Get Assassin profile
-router.get('/profile/:id' , (req,res) => {
-  let id = (req.params.id)
-  knex('jobs')
-  .fullOuterJoin('assassins','assassins.assassin_id','jobs.assassin_id')
-  .fullOuterJoin('contracts', 'jobs.contract_id' , 'contracts.contract_id')
-  .where('assassins.assassin_id','=', id)
-  .then((assassin) => {
-    console.log(assassin[0].assassin_id,
-      assassin.length)
-    res.render('profile',{assassin:assassin})
-    //res.send(assassin)
-  })
-})
-
-//Contract Profile
-router.get('/contract/:id' , (req,res) => {
-  let id = (req.params.id)
-  knex('jobs')
-  .join('assassins','assassins.assassin_id','jobs.assassin_id')
-  .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
-  .where('jobs.contract_id','=', id)
-  .then((contract) => {
-    res.render('contractprofile',{contract:contract})
+    res.render('contracts-edit-done');
   })
 })
 
 module.exports = router;
-
-
-
