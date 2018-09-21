@@ -100,10 +100,16 @@ button:hover:enabled {
 
 .edit{
   display: inline;
+  margin-right: 10px;
 }
 .remove{
   display: inline;
   background: #E74C3C;
+}
+.retire{
+  background: grey;
+  width: 200px;
+  font-size: 12px;
 }
 form {
   text-decoration: none;

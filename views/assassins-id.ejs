@@ -14,11 +14,15 @@
           <p>Price: $<%=assassin[0].price%></p>
           <p>Weapon: <%=assassin[0].weapon%></p>
           <p>Number of Kills: <%=assassin[0].name%></p>
-          <p>Contact now at <%=assassin[0].contact_info%></p>
-          <p><a href="/assassins/edit/<%=assassin[0].assassin_id%>" >
-            <button class="edit" >Edit</button>
-            <button class="remove" >Remove</button>
-          </a></p>   
+          <p><strong>Contact now at <%=assassin[0].contact_info%></strong></p>
+          <p>
+            <a href="/assassins/edit/<%=assassin[0].assassin_id%>" >
+              <button class="edit" >Edit</button>
+            </a>
+            <a href="/assassins/remove/<%=assassin[0].assassin_id%>">
+              <button class="remove" >Remove</button>
+            </a>
+          </p>   
         </div>      
     </div>
 
@@ -54,7 +58,6 @@
                       <a href="/assassins/edit/<%=assassin.assassin_id%>" >
                         <button class="edit" >Edit</button>
                         <button class="remove" >Remove</button>
-                        <button class="complete" >Complete</button>
                       </a>
                   </div>
                  

@@ -1,11 +1,10 @@
 <link href="/style.css" rel="stylesheet" >
 <% include header %>
 
-      <h1 class='title'>Please provide the following information about yourself</h1>
+      <h1 class='title'>Please update your information</h1>
 
       <form action="/assassins/edit/done" method = "post">
         <div>
-            <!-- <label for="assassin_id">your id:</label> -->
             <input type="hidden" id="assassin_id" name="assassin_id" value='<%=assassin[0].assassin_id%>' >
           </div>
           <br>
@@ -49,6 +48,12 @@
                 <input type="decimal" id="rating" name="rating" value="<%=assassin[0].rating%>">
               </div>
               <br>
+            <div>
+                <label for="contact_info">email:</label>
+                <input type="text" id="contact_info" name="contact_info" value="<%=assassin[0].contact_info%>">
+              </div>
+              <br>
+            
           <button type = "submit">submit</button>
       </form>
 

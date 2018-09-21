@@ -1,0 +1,38 @@
+<link href="/style.css" rel="stylesheet" >
+
+<% include header %>
+
+<form action="contracts-add/done" method = "post">
+  <div>
+    <label for="client_name">Your name:</label>
+    <input type="text" id="client_name" name="client_name">
+  </div>
+  <br>
+  <div>
+      <label for="target_name">Target name:</label>
+      <input type="text" id="target_name" name="target_name">
+    </div>
+    <br>
+    <div>
+      <label for="target_location">Target location:</label>
+      <input type="text" id="target_location" name="target_location">
+    </div>
+    <br>
+    <div>
+      <label for="budget">Your budget</label>
+      <input type="integer" id="budget" name="budget">
+    </div>
+    <br>
+    <div>
+      <label for="target_photo">Provide a photo</label>
+      <input type="text" id="target_photo" name="target_photo">
+    </div>
+    <br>
+    <div>
+      <label for="target_security">From 1-10, how protected is this target?</label>
+      <input type="ingeger" id="target_security" name="target_security">
+    </div>
+    <br>
+    <button type = "submit">Submit</button>
+</form>
+

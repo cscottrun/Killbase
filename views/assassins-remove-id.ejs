@@ -1,0 +1,13 @@
+<link href="/style.css" rel="stylesheet">
+
+<% include header %>
+
+<div class='home'>
+  <h1>Are you sure you'd like to retire?</h1>
+  <form action="/assassins/remove/done" method = "post">
+    <input type="hidden" id="assassin_id" name="assassin_id" value='<%=assassin[0].assassin_id%>' >
+    <button type='submit' class='retire'>Yes, my carreer is done.</button>
+
+  </form>
+
+</div>

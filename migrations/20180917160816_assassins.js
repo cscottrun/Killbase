@@ -9,7 +9,8 @@ exports.up = function(knex, Promise) {
     table.integer('price');
     table.decimal('rating');
     table.integer('kills');
-    table.string('assassin_photo')
+    table.string('assassin_photo');
+    table.string('status');
   })
 };
 

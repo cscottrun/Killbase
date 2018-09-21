@@ -2,36 +2,39 @@
 
 <% include header %>
 
-<form action="contracts/edit/done" method = "post">
+<form action="/contracts-edit/done" method = "post">
+  <input type="hidden" id="contract_id" name="contract_id" value='<%=contract[0].contract_id%>' >
+
   <div>
     <label for="client_name">Your name:</label>
-    <input type="text" id="client_name" name="client_name">
+    <input type="text" id="client_name" name="client_name" value= '<%=contract[0].client_name%>'>
   </div>
   <br>
   <div>
       <label for="target_name">Target name:</label>
-      <input type="text" id="target_name" name="target_name">
+      <input type="text" id="target_name" name="target_name" value= '<%=contract[0].target_name%>'>
     </div>
     <br>
     <div>
       <label for="target_location">Target location:</label>
-      <input type="text" id="target_location" name="target_location">
+      <input type="text" id="target_location" name="target_location" value= '<%=contract[0].target_location%>'>
     </div>
     <br>
     <div>
       <label for="budget">Your budget</label>
-      <input type="integer" id="budget" name="budget">
+      <input type="integer" id="budget" name="budget" value= '<%=contract[0].budget%>'>
     </div>
     <br>
     <div>
       <label for="target_photo">Provide a photo</label>
-      <input type="text" id="target_photo" name="target_photo">
+      <input type="text" id="target_photo" name="target_photo" value= '<%=contract[0].target_photo%>'>
     </div>
     <br>
     <div>
       <label for="target_security">From 1-10, how protected is this target?</label>
-      <input type="ingeger" id="target_security" name="target_security">
+      <input type="ingeger" id="target_security" name="target_security" value= '<%=contract[0].target_security%>'>
     </div>
     <br>
     <button type = "submit">Submit</button>
 </form>
+
