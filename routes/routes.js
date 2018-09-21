@@ -125,9 +125,9 @@ knex('contracts')
 router.get('/contracts/:id' , (req,res) => {
   let id = (req.params.id)
   knex('jobs')
-  .join('assassins','assassins.assassin_id','jobs.assassin_id')
-  .join('contracts', 'jobs.contract_id' , 'contracts.contract_id')
-  .where('jobs.contract_id','=', id)
+  .fullOuterJoin('contracts', 'jobs.contract_id' , 'contracts.contract_id')
+  .fullOuterJoin('assassins','assassins.assassin_id','jobs.assassin_id')
+  .where('contracts.contract_id','=', id)
   .then((contract) => {
     res.render('contracts-id',{contract:contract})
   })
@@ -184,5 +184,39 @@ router.post('/contracts-edit/done' , (req,res,next) => {
   })
 })
 
+//////////////////
+/****REGISTER*****/
+
+//Form to register for job
+router.get('/register/:id', (req,res) => {
+  let contract_id = req.params.id;
+  knex('contracts')
+  .where ('contract_id', '=', contract_id)
+  .then((contract) => {
+    res.render('register', {contract:contract})
+  })
+});
+
+//Post to add to Jobs table  
+router.post('/register/done', (req,res) => {
+  let contract_id = req.body.contract_id;
+  let assassinCodeName = req.body.code_name;
+  
+  knex.select('assassin_id')
+  .from('assassins')
+  .where('code_name', '=', assassinCodeName)
+  .then((assassin) => {
+    assassin_id = assassin[0].assassin_id;
+    knex('jobs')
+    .insert({
+      assassin_id: assassin_id,
+      contract_id: contract_id
+    }, '*')
+    .then(() => {
+      res.render('register-done')
+    })
+  
+  })
+})
 
 module.exports = router;

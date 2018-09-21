@@ -20,12 +20,14 @@
             <br>
             </a>
             <a>
-            <button class="remove">Remove</button>
+            <button class="remove">Close</button>
             </a>
           </p>
-          <p><a href="">  
-            <button class="register" >Join this contract</button>
-          </a></p>
+          <p>
+            <a href="/register/<%=contract[0].contract_id%>">  
+              <button class="register" >Join this contract</button>
+            </a>
+          </p>
             
         </div>      
     </div>
@@ -41,7 +43,7 @@
               <ul class=contract-list-items>
                 <li class=contract-item>
                     <h2>
-                      <%=contract.code_name%>
+                      <%= contract.code_name ? contract.code_name : "Anonymous"%>
                     </h2>
                   <div><a href="/assassins/<%=contract.assassin_id%>">
                     <img
@@ -50,12 +52,14 @@
                     alt="<%=contract.assassin_photo%>"
                     ></a>
                   </div>
+                  <br>
                   <h4>
                     Rating: <%=contract.rating%>
                   </h4>      
                   <h4>
                     Kills: <%=contract.kills%>
                   </h4>
+                  <br>
                   <div class="tripple">
                       <!-- <a href="/" > -->
                         <button class="edit" >Edit</button>
@@ -74,7 +78,7 @@
     
     <% } else { %>
         <div class='home'>
-          <a href="/register">
+          <a href="/register/<%=contract[0].contract_id%>">
             <div class='bigbutton'>
               <h1>No assassins yet. Sign up now!</h1>
 

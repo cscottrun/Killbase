@@ -1,0 +1,26 @@
+<link href="/style.css" rel="stylesheet">
+
+<% include header %>
+
+
+<form action="/register/done" method = "post">
+  <input type="hidden" id="contract_id" name="contract_id" value='<%=contract[0].contract_id%>' >
+  <h1><%=contract[0].target_name %></h1>
+  <div class = "home">
+      
+    <a href= "/contracts">
+      <img class="profilepic" src="<%=contract[0].target_photo%>" alt="<%=contract[0].target_name%>">
+    </a>
+
+      <div id = 'info'>
+        <h2>Who are you?</h2>
+        <p>
+          <label for="code_name">Your code name:</label>
+          <input type="text" id="code_name" name="code_name" >
+        </p>
+        <p><button type = "submit">Submit</button></p>          
+      </div>
+
+  </div> 
+</form>
+
