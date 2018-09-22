@@ -20,7 +20,7 @@
               <button class="edit" >Edit</button>
             </a>
             <a href="/assassins/remove/<%=assassin[0].assassin_id%>">
-              <button class="remove" >Remove</button>
+              <button class="remove" >Retire</button>
             </a>
           </p>   
         </div>      
@@ -29,7 +29,7 @@
       
     <div class= 'home'>
         <h1>Active Contracts</h1>
-  <% if (assassin[0].contract_id) { %>      
+  <% if (assassin[0].contract_status === 'active') { %>      
         
           <ul class='allcontracts'>
             <%assassin.forEach((assassin) => { %>
@@ -54,13 +54,78 @@
                   <h4>
                   Security level <%=assassin.target_security%>
                   </h4>
-                  <div class="tripple">
-                      <a href="/assassins/edit/<%=assassin.assassin_id%>" >
-                        <button class="edit" >Edit</button>
-                        <button class="remove" >Remove</button>
-                      </a>
-                  </div>
+                  <p>
+                      <form class="edit" action="/complete" method = "post">
+                        <input type="hidden" id="contract_id" name = "contract_id" value=<%=assassin.contract_id%> >
+                        <input type="hidden" id="assassin_id" name = "assassin_id" value=<%=assassin.assassin_id%> >
+                        <button type= "submit" class="edit">Complete</button>
+                      </form>
                  
+
+                      <form class="remove" action="/quitter" method = "post">
+                        <input type="hidden" id="contract_id" name = "contract_id" value=<%=assassin.contract_id%> >
+                        <input type="hidden" id="assassin_id" name = "assassin_id" value=<%=assassin.assassin_id%> >
+                        <button type= "submit" class="remove">Quit</button>
+                      </form>
+                
+                  </p>
+
+                </li>
+              </ul>  
+           <% }) %>
+          </ul>
+    
+        <% } else { %>
+          <div class='home'>
+              <h1>None</h1>
+          </div>
+        
+          <% } %>
+    </div>
+
+    <div class= 'home'>
+        <h1>Completed Contracts</h1>
+  <% if (assassin[0].contract_status === 'complete') { %>      
+        
+          <ul class='allcontracts'>
+            <%assassin.forEach((assassin) => { %>
+              <ul class=contract-list-items>
+                <li class=contract-item>
+                    <h2>
+                      <%=assassin.target_name%> - Dead
+                    </h2>
+                  <div><a href="/contracts/<%=assassin.contract_id%>">
+                    <img
+                    class = 'photo' 
+                    src="<%=assassin.target_photo%>" 
+                    alt="<%=assassin.target_name%>"
+                    ></a>
+                  </div>
+                  <h4>
+                    Budget $<%=assassin.budget%>
+                  </h4>      
+                  <h4>
+                    <%=assassin.target_location%>
+                  </h4>
+                  <h4>
+                  Security level <%=assassin.target_security%>
+                  </h4>
+                  <p>
+                      <!-- <form action="/quitter" method = "post">
+                        <input type="hidden" id="contract_id" name = "contract_id" value=<%=assassin.contract_id%> >
+                        <input type="hidden" id="assassin_id" name = "assassin_id" value=<%=assassin.assassin_id%> >
+                        <button type= "submit" class="remove">Complete</button>
+                      </form> -->
+                 
+
+                      <form action="/quitter" method = "post">
+                        <input type="hidden" id="contract_id" name = "contract_id" value=<%=assassin.contract_id%> >
+                        <input type="hidden" id="assassin_id" name = "assassin_id" value=<%=assassin.assassin_id%> >
+                        <button type= "submit" class="remove">Quit</button>
+                      </form>
+                
+                  </p>
+
                 </li>
               </ul>  
            <% }) %>

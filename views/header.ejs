@@ -5,6 +5,16 @@
         <h3>Killbase</h3>
       </div>
     </a>
+    
+    <div class='searchbox'>
+    <form action="/search" method='post'>
+        <input class="radio" type="radio" name="contracts"> Contracts
+        <input class="radio" type="radio" name="assassins"> Assassins
+        <input class= "search" type="text" name="searchterm" placeholder="search">
+        <button class ="go" type = "submit">Go</button>
+      </form>  
+    </div>
+
   </header>
   
   <body>
@@ -14,6 +24,8 @@
         <a href='/assassins'><p>Assassins</p></a>
         <a href='/contracts'><p>Contracts</p></a> 
         <a href='/assassins-add'><p>Join the team</p></a> 
-        <!-- <a href='/signup'><p>Sign up for a job</p></a> -->
         <a href='/contracts-add'><p>Create a new contract</p></a>   
       </div class='home'>
+
+
+      

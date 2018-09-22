@@ -7,6 +7,37 @@ router.get('/' , (req,res) =>{
   res.render('index')
 })
 
+//Searh Results
+router.post('/search', (req,res) => {
+   console.log(req.body)
+   if (req.body.contracts === 'on') {
+    knex('contracts')
+      .where({'target_name': req.body.searchterm})
+      .orWhere({'target_location': req.body.searchterm})
+      .orWhere({'client_name': req.body.searchterm})
+      .orWhere({'contract_status': req.body.searchterm})
+      //.orWhere({'budget': req.body.searchterm})
+      //.orWhere('target_security', req.body.searchterm)
+      .then((contracts) => {
+        res.render('search-contracts',{contracts:contracts})
+      })
+    } else if (req.body.assassins === 'on') {
+      knex('assassins')
+      .where('status','active')
+      .where({'name': req.body.searchterm })
+      .orWhere({code_name: req.body.searchterm })
+      .orWhere({weapon: req.body.searchterm })
+      .orWhere({status: req.body.searchterm })
+      //.orWhere({age})
+      //.orWhere({price })
+      //.orWhere({ rating})
+      //.orWhere({ kills})
+      .then((assassins) => {
+        res.render('search-assassins',{assassins:assassins})
+      })
+    }   
+})
+
 //////////////////
 /****ASSASSINS*****/
 
@@ -147,7 +178,8 @@ router.post('/contracts-add/done' , (req,res,next) => {
     "target_photo": req.body.target_photo,
     "target_security": req.body.target_security,
     "client_name": req.body.client_name,
-    "budget": req.body.budget
+    "budget": req.body.budget,
+    "contract_status": 'active'
     
   },'*')
   .then((contract) => {
@@ -200,8 +232,7 @@ router.get('/register/:id', (req,res) => {
 //Post to add to Jobs table  
 router.post('/register/done', (req,res) => {
   let contract_id = req.body.contract_id;
-  let assassinCodeName = req.body.code_name;
-  
+  let assassinCodeName = req.body.code_name; 
   knex.select('assassin_id')
   .from('assassins')
   .where('code_name', '=', assassinCodeName)
@@ -215,7 +246,33 @@ router.post('/register/done', (req,res) => {
     .then(() => {
       res.render('register-done')
     })
-  
+  })
+})
+
+//Assassin quits contract
+router.post('/quitter', (req,res) => {
+  let assassin_id = req.body.assassin_id;
+  let contract_id = req.body.contract_id;
+  knex('jobs')
+  .where({
+    assassin_id: assassin_id,
+    contract_id: contract_id
+  })  
+  .del()
+  .then(() => {
+    res.render('quitter')
+  })
+})
+
+//Assassin completes contract
+router.post('/complete', (req,res) => {
+  let assassin_id = req.body.assassin_id;
+  let contract_id = req.body.contract_id;
+  knex('contracts')
+  .where('contract_id', '=', contract_id)
+  .update('contract_status', 'complete')
+  .then(() => {
+    res.render('complete')
   })
 })
 

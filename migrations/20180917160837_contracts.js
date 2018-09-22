@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.integer('target_security');
     table.string('client_name');
     table.integer('budget');
+    table.string('contract_status');
   })
 };
 

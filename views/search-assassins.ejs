@@ -1,0 +1,50 @@
+<link href="./style.css" rel="stylesheet" >
+
+  <% include header %>
+
+    <h1 class='title'>Assassins</h1>
+
+        <ul class='allassassins'>
+            <%assassins.forEach((assassin) => { %>
+              <ul class=assassin-list-items>
+                <li class=assassin-item>
+                    <h2>
+                      <%= assassin.code_name ? assassin.code_name : 'Anonymous' %>
+                    </h2>
+                    <h4>
+                      Rating: <%=assassin.rating%>
+                    </h4>   
+                  <div>
+                    <a href="/assassins/<%=assassin.assassin_id%>">
+                      <img
+                      src="<%=assassin.assassin_photo%>" 
+                      alt="some photo"
+                      class="photo"
+                      >
+                    </a>
+                  </div>
+                    <h4>
+                      Weaon: <%=assassin.weapon%>
+                    </h4>      
+                    <h4>
+                      Age: <%=assassin.age%>
+                    </h4>
+                    <h4>
+                    Price $<%=assassin.price%>
+                    </h4>
+                    <h4>
+                        Contact: <%=assassin.contact_info%>
+                      </h4>   
+                    <div class="buttonpair">
+                      <a href="/assassins/<%=assassin.assassin_id%>" >
+                      <button>Hire!</button>
+                      </a>
+                    </div>
+                </li>
+              </ul>
+          <% }) %>
+        </ul>      
+  </div>
+</div>
+</body>
+</html>

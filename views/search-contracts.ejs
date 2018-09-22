@@ -1,7 +1,7 @@
 <link href="./style.css" rel="stylesheet" >
 <% include header %>
 
-      <h1 class='title'>Open Contracts</h1>
+      <h1 class='title'>Contracts</h1>
     
       <ul class='allcontracts'>
           <%contracts.forEach((contract) => { 
@@ -44,7 +44,6 @@
           }) %>
         </ul>
 
-        <h1 class='title'>Completed Contracts</h1>
     
         <ul class='allcontracts'>
             <%contracts.forEach((contract) => { 
@@ -66,9 +65,10 @@
                   <br>       
                   <h4>
                     <%=contract.target_location%>
-                  </h4>
-
-                 
+                  </h4> 
+                  <h4>
+                    Threat has been neutralized.
+                    </h4> 
                 </li>
               </ul>  
            <% }

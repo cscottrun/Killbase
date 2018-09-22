@@ -44,9 +44,10 @@ a {
   justify-content: center;
 }
 #navBar a{
-  margin: 15px;
+  margin: 10px;
   font-weight: bold;
   cursor: pointer;
+  font-size: 20px;
 }
 li{
   list-style-type: none
@@ -111,14 +112,30 @@ button:hover:enabled {
   width: 200px;
   font-size: 12px;
 }
-form {
+.form {
   text-decoration: none;
   color: #34495E;  
 }
-input, label{
+.input, label{
   display: flex;
   margin-left: 50px;
   margin-bottom: 10px;
+}
+.searchbox{
+  float: right;
+  padding-top: 40px;
+  text-decoration: none;
+  color: #34495E;
+  font-weight: bold;
+}
+.go{
+  display: inline;
+  width: 30px;
+}
+
+.search{
+  border-radius: 5px;
+  height: 20px;
 }
 
 .allcontracts , .allassassins{
