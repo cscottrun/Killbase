@@ -123,7 +123,7 @@ button:hover:enabled {
 }
 .searchbox{
   float: right;
-  padding-top: 40px;
+  padding-top: 30px;
   text-decoration: none;
   color: #34495E;
   font-weight: bold;
@@ -131,6 +131,7 @@ button:hover:enabled {
 .go{
   display: inline;
   width: 30px;
+  margin-right: 10px;
 }
 
 .search{
