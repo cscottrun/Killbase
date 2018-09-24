@@ -1,11 +1,11 @@
 <link href="./style.css" rel="stylesheet" >
 <% include header %>
 
-      <h1 class='title'>Open Contracts</h1>
+      <h1 class='title'> Open Contracts</h1>
     
       <ul class='allcontracts'>
           <%contracts.forEach((contract) => { 
-            if (contract.contract_status === 'active') { %>
+            if (contract.contract_status === 'active') {  %>
             <ul class=contract-list-items>
               <li class=contract-item>
                   <h2>
@@ -31,13 +31,9 @@
                 Security level <%=contract.target_security%>
                 </h4>
                 <br>
-                <div class="tripple">
                     <a href="/contracts-edit/<%=contract.contract_id%>" >
                       <button class="edit" >Edit</button>
-                    </a>
-                    <!-- <button class="remove" >Remove</button> -->
-                </div>
-               
+                    </a>               
               </li>
             </ul>  
          <% }
